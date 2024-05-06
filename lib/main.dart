@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:thememode/screens/home_screen.dart';
+import 'controllers/theme_controller.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key, });
 
-  // This widget is the root of your application.
+  final themeController = Get.put(ThemeController());
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: HomeScreen());
+    return GetMaterialApp(
+      theme: themeController.lightTheme,
+      darkTheme: themeController.darkTheme,
+      themeMode: ThemeMode.system,
+      debugShowCheckedModeBanner: false,
+      home: HomeScreen(),
+
+    );
   }
 }
